@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -68,6 +70,12 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+
+
 //    implementation(Dependencies.coreKtx)
 //    implementation(Dependencies.lifecycleRuntime)
 //    implementation(Dependencies.activityCompose)
@@ -87,4 +95,9 @@ dependencies {
     // integrate other modules from other modules. Check buildSrc.Dependencies
     implementation(project(Modules.utils))
 
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
